@@ -11,6 +11,7 @@ public class RosterTest {
         assertTrue(roster.AddID("people1"));
         assertTrue(roster.AddID("people2"));
         assertFalse(roster.AddID("people1"));
+        assertFalse(roster.AddID("123abc"));
         // check exist
         assertTrue(roster.ExistsID("people2"));
         assertFalse(roster.ExistsID("people3"));

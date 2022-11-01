@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'application'
 }
 
 group 'edu.cmu.apidesign'
@@ -34,3 +35,5 @@ jacocoTestCoverageVerification {
         }
     }
 }
+
+mainClassName = "a0.Main"

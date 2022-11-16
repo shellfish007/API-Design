@@ -12,8 +12,11 @@ repositories {
 }
 
 dependencies {
+    testImplementation 'io.rest-assured:rest-assured:5.2.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'com.sparkjava:spark-core:2.3'
+    implementation 'org.json:json:20211205'
 }
 
 test {

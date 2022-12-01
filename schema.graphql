@@ -1,0 +1,26 @@
+type Doctor {
+    id: Int!
+    name: String
+    clinic: String
+    specialty: String
+    availableSlots: [String]
+}
+
+type Appointment {
+    id: Int!
+    doctorID: Int!
+    patient: String
+    time: String
+}
+
+type Query{
+    doctorById(doctorID: Int) : Doctor
+    appointmentById(appointmentID: Int) : Appointment
+    availableSlots(doctorID: Int): [String]
+}
+
+type Mutation{
+    bookAppointment(doctorID: Int, patient: String, time: String) : Appointment
+    cancelAppointment(appointmentID: Int) : String
+    updateAppointment(appointmentID: Int, patient: String) : Appointment
+}

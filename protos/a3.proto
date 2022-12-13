@@ -11,7 +11,7 @@ message Book{
     string title = 2;
     string author = 3;
     enum genre_types{
-        fiction = 0 ;
+        fiction = 0;
         novel = 1;
     }
     genre_types genre = 4;
@@ -24,8 +24,8 @@ message Identifier{
 
 message GetBookResponse{
     enum ret_value{
-        success = 0;
-        fail = 1;
+        ok = 0;
+        error = 1;
     }
     ret_value status = 1;
     oneof obj{
@@ -36,8 +36,8 @@ message GetBookResponse{
 
 message CreateBookResponse{
     enum ret_value{
-        success = 0;
-        fail = 1;
+        ok = 0;
+        error = 1;
     }
     ret_value status = 1;
     string message = 2;

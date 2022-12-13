@@ -41,7 +41,7 @@ class Client(object):
 
 if __name__ == '__main__':
     client = Client()
-    new_book = {"ISBN": "1234", "title": "Safe and Sound", "author": "Taylor Swift", "genre": 0, "year": 2010}
-    client.createBook(new_book)
-    client.getBook("123")
+    new_book = {"ISBN": "1234", "title": "Safe and Sound", "author": "Taylor Swift", "genre": 1, "year": 2010}
+    # client.createBook(new_book)
+    client.getBook("231")
 

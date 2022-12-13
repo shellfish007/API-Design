@@ -28,9 +28,11 @@ class InventoryService(pb2_grpc.InventoryServiceServicer):
         if not self.books.__contains__(request.ISBN):
             return pb2.GetBookResponse(status=1, msg="ISBN not exists!")
         book = self.books[request.ISBN]
-        return pb2.GetBookResponse(status=0, bk=pb2.Book(
+        response = pb2.GetBookResponse(status=0, bk=pb2.Book(
             ISBN=book['ISBN'], title=book['title'], author=book['author'],
             genre=book['genre'], year=book['year']))
+        print(response)
+        return response
 
 
 def server():

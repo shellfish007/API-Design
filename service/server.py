@@ -12,19 +12,25 @@ class InventoryService(pb2_grpc.InventoryServiceServicer):
         self.books = {"123": book1, "231": book2, "312": book3}
 
     def CreateBook(self, request, context):
+        if self.books.__contains__(request.ISBN):
+            return pb2.CreateBookResponse(status=1, message="ISBN already exists!")
         book = {"ISBN": request.ISBN,
                 "title": request.title,
                 "author": request.author,
                 "genre": request.genre,
                 "year": request.year}
         self.books[request.ISBN] = book
-        print(request)
-        return pb2.Empty()
+        response = pb2.CreateBookResponse(status=0, message="Successfully created a book!")
+        print(response)
+        return response
 
     def GetBook(self, request, context):
+        if not self.books.__contains__(request.ISBN):
+            return pb2.GetBookResponse(status=1, msg="ISBN not exists!")
         book = self.books[request.ISBN]
-        return pb2.Book(ISBN=book['ISBN'], title=book['title'],
-                        author=book['author'], genre=book['genre'], year=book['year'])
+        return pb2.GetBookResponse(status=0, bk=pb2.Book(
+            ISBN=book['ISBN'], title=book['title'], author=book['author'],
+            genre=book['genre'], year=book['year']))
 
 
 def server():

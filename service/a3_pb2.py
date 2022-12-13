@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x08\x61\x33.proto\"\x8a\x01\n\x04\x42ook\x12\x0c\n\x04ISBN\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x03 \x01(\t\x12 \n\x05genre\x18\x04 \x01(\x0e\x32\x11.Book.genre_types\x12\x0c\n\x04year\x18\x05 \x01(\x05\"%\n\x0bgenre_types\x12\x0b\n\x07\x66iction\x10\x00\x12\t\n\x05novel\x10\x01\"`\n\rInventoryItem\x12\x0e\n\x06number\x18\x01 \x01(\x05\x12\x13\n\x02\x62k\x18\x02 \x01(\x0b\x32\x05.BookH\x00\"\"\n\x06status\x12\r\n\tavailable\x10\x00\x12\t\n\x05taken\x10\x01\x42\x06\n\x04\x62ook\"\x1a\n\nIdentifier\x12\x0c\n\x04ISBN\x18\x01 \x01(\t\"\x07\n\x05\x45mpty2R\n\x10InventoryService\x12\x1d\n\nCreateBook\x12\x05.Book\x1a\x06.Empty\"\x00\x12\x1f\n\x07GetBook\x12\x0b.Identifier\x1a\x05.Book\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x08\x61\x33.proto\"\x8a\x01\n\x04\x42ook\x12\x0c\n\x04ISBN\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x03 \x01(\t\x12 \n\x05genre\x18\x04 \x01(\x0e\x32\x11.Book.genre_types\x12\x0c\n\x04year\x18\x05 \x01(\x05\"%\n\x0bgenre_types\x12\x0b\n\x07\x66iction\x10\x00\x12\t\n\x05novel\x10\x01\"\x1a\n\nIdentifier\x12\x0c\n\x04ISBN\x18\x01 \x01(\t\"\x8c\x01\n\x0fGetBookResponse\x12*\n\x06status\x18\x01 \x01(\x0e\x32\x1a.GetBookResponse.ret_value\x12\x13\n\x02\x62k\x18\x02 \x01(\x0b\x32\x05.BookH\x00\x12\r\n\x03msg\x18\x03 \x01(\tH\x00\"\"\n\tret_value\x12\x0b\n\x07success\x10\x00\x12\x08\n\x04\x66\x61il\x10\x01\x42\x05\n\x03obj\"x\n\x12\x43reateBookResponse\x12-\n\x06status\x18\x01 \x01(\x0e\x32\x1d.CreateBookResponse.ret_value\x12\x0f\n\x07message\x18\x02 \x01(\t\"\"\n\tret_value\x12\x0b\n\x07success\x10\x00\x12\x08\n\x04\x66\x61il\x10\x01\"\x91\x01\n\rInventoryItem\x12\x0e\n\x06number\x18\x01 \x01(\x05\x12\x13\n\x02\x62k\x18\x02 \x01(\x0b\x32\x05.BookH\x00\x12*\n\x06status\x18\x03 \x01(\x0e\x32\x1a.InventoryItem.book_status\"\'\n\x0b\x62ook_status\x12\r\n\tavailable\x10\x00\x12\t\n\x05taken\x10\x01\x42\x06\n\x04\x62ook2j\n\x10InventoryService\x12*\n\nCreateBook\x12\x05.Book\x1a\x13.CreateBookResponse\"\x00\x12*\n\x07GetBook\x12\x0b.Identifier\x1a\x10.GetBookResponse\"\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'a3_pb2', globals())
@@ -24,14 +24,20 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _BOOK._serialized_end=151
   _BOOK_GENRE_TYPES._serialized_start=114
   _BOOK_GENRE_TYPES._serialized_end=151
-  _INVENTORYITEM._serialized_start=153
-  _INVENTORYITEM._serialized_end=249
-  _INVENTORYITEM_STATUS._serialized_start=207
-  _INVENTORYITEM_STATUS._serialized_end=241
-  _IDENTIFIER._serialized_start=251
-  _IDENTIFIER._serialized_end=277
-  _EMPTY._serialized_start=279
-  _EMPTY._serialized_end=286
-  _INVENTORYSERVICE._serialized_start=288
-  _INVENTORYSERVICE._serialized_end=370
+  _IDENTIFIER._serialized_start=153
+  _IDENTIFIER._serialized_end=179
+  _GETBOOKRESPONSE._serialized_start=182
+  _GETBOOKRESPONSE._serialized_end=322
+  _GETBOOKRESPONSE_RET_VALUE._serialized_start=281
+  _GETBOOKRESPONSE_RET_VALUE._serialized_end=315
+  _CREATEBOOKRESPONSE._serialized_start=324
+  _CREATEBOOKRESPONSE._serialized_end=444
+  _CREATEBOOKRESPONSE_RET_VALUE._serialized_start=281
+  _CREATEBOOKRESPONSE_RET_VALUE._serialized_end=315
+  _INVENTORYITEM._serialized_start=447
+  _INVENTORYITEM._serialized_end=592
+  _INVENTORYITEM_BOOK_STATUS._serialized_start=545
+  _INVENTORYITEM_BOOK_STATUS._serialized_end=584
+  _INVENTORYSERVICE._serialized_start=594
+  _INVENTORYSERVICE._serialized_end=700
 # @@protoc_insertion_point(module_scope)

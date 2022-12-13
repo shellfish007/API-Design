@@ -35,7 +35,8 @@ class Client(object):
                 genre=book['genre'],
                 year=book['year']
         )
-        self.stub.CreateBook(pb2_book)
+        response = self.stub.CreateBook(pb2_book)
+        print(response)
 
 
 if __name__ == '__main__':

@@ -2,8 +2,8 @@
 syntax = "proto3";
 
 service InventoryService{
-    rpc CreateBook(Book) returns (Empty){}
-    rpc GetBook(Identifier) returns (Book){}
+    rpc CreateBook(Book) returns (CreateBookResponse){}
+    rpc GetBook(Identifier) returns (GetBookResponse){}
 }
 
 message Book{
@@ -18,19 +18,39 @@ message Book{
     int32 year = 5;
 }
 
+message Identifier{
+    string ISBN = 1;
+}
+
+message GetBookResponse{
+    enum ret_value{
+        success = 0;
+        fail = 1;
+    }
+    ret_value status = 1;
+    oneof obj{
+        Book bk = 2;
+        string msg = 3;
+    }
+}
+
+message CreateBookResponse{
+    enum ret_value{
+        success = 0;
+        fail = 1;
+    }
+    ret_value status = 1;
+    string message = 2;
+}
+
 message InventoryItem{
     int32 number = 1;
     oneof book{
         Book bk = 2;
     }
-    enum status{
+    enum book_status{
         available = 0;
         taken = 1;
     }
+    book_status status = 3;
 }
-
-message Identifier{
-    string ISBN = 1;
-}
-
-message Empty{}

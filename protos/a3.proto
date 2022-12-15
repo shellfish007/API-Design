@@ -22,6 +22,8 @@ message Identifier{
     string ISBN = 1;
 }
 
+// On succeed return status ok and the book
+// otherwise return error status and error message
 message GetBookResponse{
     enum ret_value{
         ok = 0;
@@ -34,6 +36,8 @@ message GetBookResponse{
     }
 }
 
+// On succeed return status ok and message indicating success
+// otherwise return error status and error message
 message CreateBookResponse{
     enum ret_value{
         ok = 0;

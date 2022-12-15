@@ -1,10 +1,13 @@
 import grpc
+import os
+import sys
+sys.path.append(os.path.dirname(__file__) + '/..')
+sys.path.append(os.path.dirname(__file__) + '/../service')
+from service import a3_pb2 as pb2
+from service import a3_pb2_grpc as pb2_grpc
 
-import a3_pb2 as pb2
-import a3_pb2_grpc as pb2_grpc
 
-
-class Client(object):
+class InventoryClient(object):
     """
     Client for gRPC functionality
     """
@@ -25,7 +28,7 @@ class Client(object):
         Client function to call the rpc for GetBook
         """
         response = self.stub.GetBook(pb2.Identifier(ISBN=ISBN))
-        print(response)
+        return response
 
     def createBook(self, book):
         """
@@ -39,11 +42,11 @@ class Client(object):
                 year=book['year']
         )
         response = self.stub.CreateBook(pb2_book)
-        print(response)
+        return response
 
 
 if __name__ == '__main__':
-    client = Client()
+    client = InventoryClient()
     new_book = {"ISBN": "1234", "title": "Safe and Sound", "author": "Taylor Swift", "genre": 1, "year": 2010}
     client.createBook(new_book)
     client.getBook("231")

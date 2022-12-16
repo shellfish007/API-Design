@@ -1,6 +1,7 @@
 from get_book_titles import GetBookTitlesClient
 from inventory_client import InventoryClient
 from unittest.mock import MagicMock
+from unittest import TestCase
 import os
 import sys
 
@@ -27,49 +28,83 @@ def side_effect(arg):
     return response
 
 
-class Tests(object):
-
-    def __init__(self, IClient):
-        self.getbookClient = GetBookTitlesClient(IClient)
+class MockTests(TestCase):
 
     def test1(self):
-        response = self.getbookClient.get_book_titles(["123", "231"])
+        mockInventoryClient = MagicMock(InventoryClient)
+        mockInventoryClient.getBook.side_effect = side_effect
+        getbookClient = GetBookTitlesClient(mockInventoryClient)
+        response = getbookClient.get_book_titles(["123", "231"])
         assert (response == ['Alice in Wonderland', 'Bob in Town'])
 
     def test2(self):
-        response = self.getbookClient.get_book_titles(["123", "3"])
+        mockInventoryClient = MagicMock(InventoryClient)
+        mockInventoryClient.getBook.side_effect = side_effect
+        getbookClient = GetBookTitlesClient(mockInventoryClient)
+        response = getbookClient.get_book_titles(["123", "3"])
         assert (response == ['Alice in Wonderland', None])
 
     def test3(self):
-        response = self.getbookClient.get_book_titles(["13", "231"])
+        mockInventoryClient = MagicMock(InventoryClient)
+        mockInventoryClient.getBook.side_effect = side_effect
+        getbookClient = GetBookTitlesClient(mockInventoryClient)
+        response = getbookClient.get_book_titles(["13", "231"])
         assert (response == [None, 'Bob in Town'])
 
     def test4(self):
-        response = self.getbookClient.get_book_titles(["13", "2"])
+        mockInventoryClient = MagicMock(InventoryClient)
+        mockInventoryClient.getBook.side_effect = side_effect
+        getbookClient = GetBookTitlesClient(mockInventoryClient)
+        response = getbookClient.get_book_titles(["13", "2"])
         assert (response == [None, None])
 
     def test5(self):
-        response = self.getbookClient.get_book_titles(["312", "123", "231"])
+        mockInventoryClient = MagicMock(InventoryClient)
+        mockInventoryClient.getBook.side_effect = side_effect
+        getbookClient = GetBookTitlesClient(mockInventoryClient)
+        response = getbookClient.get_book_titles(["312", "123", "231"])
         assert (response == ['David in Bathroom', 'Alice in Wonderland', 'Bob in Town'])
 
-    def runTests(self):
-        self.test1()
-        self.test2()
-        self.test3()
-        self.test4()
-        self.test5()
+
+class LiveTests(TestCase):
+
+    def test1(self):
+        getbookClient = GetBookTitlesClient(InventoryClient())
+        response = getbookClient.get_book_titles(["123", "231"])
+        assert (response == ['Alice in Wonderland', 'Bob in Town'])
+
+    def test2(self):
+        getbookClient = GetBookTitlesClient(InventoryClient())
+        response = getbookClient.get_book_titles(["123", "3"])
+        assert (response == ['Alice in Wonderland', None])
+
+    def test3(self):
+        getbookClient = GetBookTitlesClient(InventoryClient())
+        response = getbookClient.get_book_titles(["13", "231"])
+        assert (response == [None, 'Bob in Town'])
+
+    def test4(self):
+        getbookClient = GetBookTitlesClient(InventoryClient())
+        response = getbookClient.get_book_titles(["13", "2"])
+        assert (response == [None, None])
+
+    def test5(self):
+        getbookClient = GetBookTitlesClient(InventoryClient())
+        response = getbookClient.get_book_titles(["312", "123", "231"])
+        assert (response == ['David in Bathroom', 'Alice in Wonderland', 'Bob in Town'])
 
 
 if __name__ == '__main__':
+    unittest.main()
     # run mock server
-    mockInventoryClient = MagicMock(InventoryClient)
-    mockInventoryClient.getBook.side_effect = side_effect
-    mockTest = Tests(mockInventoryClient)
-    mockTest.runTests()
-    print("Pass all mock tests!")
-
-    # run real server
-    liveInventoryClient = InventoryClient()
-    liveTest = Tests(liveInventoryClient)
-    liveTest.runTests()
-    print("Pass all live tests!")
+    # mockInventoryClient = MagicMock(InventoryClient)
+    # mockInventoryClient.getBook.side_effect = side_effect
+    # mockTest = Tests(mockInventoryClient)
+    # mockTest.runTests()
+    # print("Pass all mock tests!")
+    #
+    # # run real server
+    # liveInventoryClient = InventoryClient()
+    # liveTest = Tests(liveInventoryClient)
+    # liveTest.runTests()
+    # print("Pass all live tests!")
